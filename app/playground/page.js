@@ -1,4 +1,5 @@
 import PageHeader from "@/components/header";
+import TransactionItem from "@/components/transaction-item";
 import Trend from "@/components/trend";
 
 export default function playground() {
@@ -24,6 +25,18 @@ export default function playground() {
           <Trend type="Saving" amount={500} prevAmount={950}/>
         </div>
       </div>
+
+      <div>
+        <h2 className="mb-4 text-lg font-mono">Transaction Item</h2>
+        <hr className="mb-4 border-grey-200 dark:border-gray-800"></hr>
+        <div className="space-y-4">
+          <TransactionItem type='Income' desciption='Salary' amount={2000}/>
+          <TransactionItem type='Expense' category='Food' desciption='Date night' amount={200}/>
+          <TransactionItem type='Saving' category='Saving' desciption='For the kids' amount={300}/>
+          <TransactionItem type='Investment' category='Stocks' desciption='S&P' amount={1000}/>
+        </div>
+      </div>
+    
     </main>
   );
 }
