@@ -2,10 +2,11 @@ import PageHeader from "@/components/header";
 import TransactionItem from "@/components/transaction-item";
 import Trend from "@/components/trend";
 import TransactionSummaryItem from "@/components/transaction-summary-item";
+import Button from "@/components/button";
 
 export default function playground() {
   return (
-    <main className="space-y-8">
+    <main className="space-y-8 mb-44">
       <h1 className="text-4xl mt-8">Playground</h1>
 
       <div>
@@ -77,6 +78,18 @@ export default function playground() {
             desciption="S&P"
             amount={1000}
           />
+        </div>
+      </div>
+
+      <div>
+        <h2 className="mb-4 text-lg font-mono">Buttons</h2>
+        <hr className="mb-4 border-grey-200 dark:border-gray-800"></hr>
+        <div className="space-x-4">
+          <Button>Hello</Button>
+          <Button variant='outline'>Hello</Button>
+          <Button variant='ghost'>Hello</Button>
+          <Button size='small'>Hello</Button>
+          <Button size='large'>Hello</Button>
         </div>
       </div>
     </main>
