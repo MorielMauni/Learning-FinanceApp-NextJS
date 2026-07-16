@@ -86,10 +86,48 @@ export default function playground() {
         <hr className="mb-4 border-grey-200 dark:border-gray-800"></hr>
         <div className="space-x-4">
           <Button>Hello</Button>
-          <Button variant='outline'>Hello</Button>
-          <Button variant='ghost'>Hello</Button>
-          <Button size='small'>Hello</Button>
-          <Button size='large'>Hello</Button>
+          <Button variant="outline">Hello</Button>
+          <Button variant="ghost">Hello</Button>
+          <Button size="small">Hello</Button>
+          <Button size="large">Hello</Button>
+        </div>
+      </div>
+
+      <div>
+        <h2 className="mb-4 text-lg font-mono">Forms</h2>
+        <hr className="mb-4 border-grey-200 dark:border-gray-800"></hr>
+        <div className="grid grid-cols2 gap-4">
+          <div>
+            <label className="text-gray-700 dark:text-gray-300 block mb-1">
+              Your Name
+            </label>
+            <input
+              type="text"
+              placeholder="Type your name"
+              className="w-full rounded-md shadow-sm border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-950"
+            />
+          </div>
+          <div>
+            <label className="text-gray-700 dark:text-gray-300 block mb-1">
+              City
+            </label>
+            <select
+              type="text"
+              className="w-full rounded-md shadow-sm border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-950"
+            >
+              <option>Pick a city</option>
+              <option>Berlin</option>
+              <option>Tel Aviv</option>
+              <option>Joe Mama</option>
+            </select>
+
+            <div className="flex items-center">
+              <input type="checkbox" className="border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-950" />
+              <label className="text-gray-700 dark:text-gray-300 ml-2">
+                CheckBox
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </main>
