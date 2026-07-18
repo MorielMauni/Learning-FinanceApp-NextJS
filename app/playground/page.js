@@ -3,6 +3,9 @@ import TransactionItem from "@/components/transaction-item";
 import Trend from "@/components/trend";
 import TransactionSummaryItem from "@/components/transaction-summary-item";
 import Button from "@/components/button";
+import Label from "@/components/label";
+import Input from "@/components/input";
+import Select from "@/components/select";
 
 export default function playground() {
   return (
@@ -98,34 +101,23 @@ export default function playground() {
         <hr className="mb-4 border-grey-200 dark:border-gray-800"></hr>
         <div className="grid grid-cols2 gap-4">
           <div>
-            <label className="text-gray-700 dark:text-gray-300 block mb-1">
-              Your Name
-            </label>
-            <input
-              type="text"
-              placeholder="Type your name"
-              className="w-full rounded-md shadow-sm border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-950"
-            />
+            <Label className="mb-1">Your Name</Label>
+            <Input type="test" placeholder="Type something here" />
           </div>
           <div>
-            <label className="text-gray-700 dark:text-gray-300 block mb-1">
-              City
-            </label>
-            <select
-              type="text"
-              className="w-full rounded-md shadow-sm border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-950"
-            >
+            <Label className="mb-1">City</Label>
+            <Select>
               <option>Pick a city</option>
               <option>Berlin</option>
               <option>Tel Aviv</option>
               <option>Joe Mama</option>
-            </select>
+            </Select>
 
             <div className="flex items-center">
-              <input type="checkbox" className="border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-950" />
-              <label className="text-gray-700 dark:text-gray-300 ml-2">
-                CheckBox
-              </label>
+              <Input type="checkbox" id="terms" />
+              <Label className="ml-2" htmlFor="terms">
+                Accept terms
+              </Label>
             </div>
           </div>
         </div>
