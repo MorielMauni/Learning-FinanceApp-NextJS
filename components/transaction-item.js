@@ -4,7 +4,7 @@ import { HandCoins, Wallet, PiggyBank, Landmark } from "lucide-react";
 export default function TransactionItem({
   type,
   category,
-  desciption,
+  description,
   amount,
 }) {
   const typesMap = {
@@ -35,7 +35,7 @@ export default function TransactionItem({
     <div className="w-full flex items-center">
       <div className="flex items-center mr-4 grow">
         <IconComponent className={`${colors} mr-2 2-4 h-4 hidden sm:block`}/>
-        <span>{desciption}</span>
+        <span>{description}</span>
       </div>
 
       <div className="min-w[150px] items-center hidden md:flex">

@@ -1,7 +1,9 @@
+import TransactionList from "./components/transaction-list";
+
 export default function dashboard() {
     return(
         <>
-        <h2>dashboard</h2>
+        <TransactionList/>
         </>
     )
 }
