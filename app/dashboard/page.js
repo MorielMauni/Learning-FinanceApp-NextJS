@@ -1,9 +1,13 @@
+import { Suspense } from "react";
 import TransactionList from "./components/transaction-list";
+import TransactionListFallback from "./components/transaction-list-fallback";
 
 export default function dashboard() {
-    return(
-        <>
-        <TransactionList/>
-        </>
-    )
+  return (
+    <>
+      <Suspense fallback={<TransactionListFallback/>}>
+        <TransactionList />
+      </Suspense>
+    </>
+  );
 }
