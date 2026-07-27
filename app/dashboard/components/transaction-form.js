@@ -42,9 +42,14 @@ export default function TransactionForm() {
         <Input type="number" {...register("created_at")} />
       </div>
 
-      <div className="col-span-2">
+      <div className="mb-1">
         <Label>Amount</Label>
         <Input type="number" {...register("amount")} />
+      </div>
+
+      <div className="col-span-2">
+        <Label>Description</Label>
+        <Input type="number" {...register("description")} />
       </div>
 
       <div className="flx justify-end">
