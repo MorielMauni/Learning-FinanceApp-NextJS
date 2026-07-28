@@ -5,6 +5,8 @@ import Label from "@/components/label";
 import Select from "@/components/select";
 import { categories, types } from "@/lib/consts";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { transactionSchema } from "@/lib/validation";
 
 export default function TransactionForm() {
   // React-Hook-Forms
@@ -15,6 +17,8 @@ export default function TransactionForm() {
     formState: { errors },
   } = useForm({
     mode: "onTouched",
+    // zod
+    resolver: zodResolver(transactionSchema)
   });
 
   const onSubmit = (data) => console.log(data);
@@ -41,9 +45,7 @@ export default function TransactionForm() {
 
       <div className="mb-1">
         <Label>Date</Label>
-        <Input type="number" {...register("created_at", {
-            required: "Must enter a date",
-          })} />
+        <Input type="number" {...register} />
           {errors.created_at && <p className="mt-1 text-red-600">{errors.created_at.message}</p>}
       </div>
 
@@ -51,20 +53,14 @@ export default function TransactionForm() {
         <Label>Amount</Label>
         <Input
           type="number"
-          {...register("amount", {
-            required: "Must enter an amount",
-            valueAsNumber: true,
-            min: {value: 1, message:'Amount must be at least 1'}
-          })}
+          {...register}
         />
         {errors.amount && <p className="mt-1 text-red-600">{errors.amount.message}</p>}
       </div>
 
       <div className="col-span-1 md:col-span-2">
         <Label>Description</Label>
-        <Input type="number" {...register("description", {
-            required: "Must enter a description",
-          })} />
+        <Input type="number" {...register} />
           {errors.description && <p className="mt-1 text-red-600">{errors.description.message}</p>}
       </div>
 
