@@ -1,9 +1,9 @@
 import Link from "next/link";
 import DarkModeToggle from "./dark-mode-toggle";
-import useServerDarkMode from "@/hooks/user-server-dark-mode";
+import geterverDarkMode from "@/hooks/user-server-dark-mode";
 
-export default function PageHeader({className}) {
-  const theme = useServerDarkMode()
+export default async function PageHeader({className}) {
+  const theme = await geterverDarkMode()
   return (
     <header className={`flex justify-between items-center ${className}`}>
       <Link

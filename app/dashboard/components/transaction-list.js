@@ -1,6 +1,7 @@
 import Separator from "@/components/separator";
 import TransactionItem from "@/components/transaction-item";
 import TransactionSummaryItem from "@/components/transaction-summary-item";
+import db from "@/db.json";
 
 const groupAndSumTransactionsByDate = (transactions) => {
   const grouped = {};
@@ -18,8 +19,7 @@ const groupAndSumTransactionsByDate = (transactions) => {
 };
 
 export default async function TransactionList() {
-  const response = await fetch("http://localhost:3100/transactions");
-  const transactions = await response.json();
+  const transactions = db.transactions ?? [];
   const grouped = groupAndSumTransactionsByDate(transactions);
 
   return (

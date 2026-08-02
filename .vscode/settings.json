@@ -1,6 +1,6 @@
 {
   "css.lint.unknownAtRules": "ignore",
-  "chat.disableAIFeatures": true,
+  "chat.disableAIFeatures": false,
   "editor.inlineSuggest.enabled": false,
 
   // Optional: If you have GitHub Copilot installed and want to disable it globally
