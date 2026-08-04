@@ -26,15 +26,19 @@ export default function TransactionItem({
     },
   };
 
-  const IconComponent = typesMap[type].icon;
-  const colors = typesMap[type].colors;
+  // const IconComponent = typesMap[type].icon;
+  // const colors = typesMap[type].colors;
+  const safeType = typesMap[type] ? type : "Expense";
 
+  const IconComponent = typesMap[safeType].icon;
+  const colors = typesMap[safeType].colors;
+  
   const formattedAmount = useFormatCurrency(amount);
 
   return (
     <div className="w-full flex items-center">
       <div className="flex items-center mr-4 grow">
-        <IconComponent className={`${colors} mr-2 2-4 h-4 hidden sm:block`}/>
+        <IconComponent className={`${colors} mr-2 2-4 h-4 hidden sm:block`} />
         <span>{description}</span>
       </div>
 
