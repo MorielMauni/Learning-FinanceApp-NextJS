@@ -1,42 +1,53 @@
-import Separator from "@/components/separator";
-import TransactionItem from "@/components/transaction-item";
-import TransactionSummaryItem from "@/components/transaction-summary-item";
-import db from "@/db.json";
+import Separator from "@/components/separator"
+import TransactionItem from "@/components/transaction-item"
+import TransactionSummaryItem from "@/components/transaction-summary-item"
+import { createClient } from "@/lib/supabase/server"
 
 const groupAndSumTransactionsByDate = (transactions) => {
-  const grouped = {};
+  const grouped = {}
   for (const transaction of transactions) {
-    const date = transaction.created_at.split("T")[0];
-    if (!grouped[date]) {
-      grouped[date] = { transactions: [], amount: 0 };
+    const date = transaction.created_at.split('T')[0]
+    if(!grouped[date]) {
+      grouped[date] = {transactions: [], amount: 0}
     }
-    grouped[date].transactions.push(transaction);
-    const amount =
-      transaction.type === "Expense" ? -transaction.amount : transaction.amount;
-    grouped[date].amount += amount;
+    grouped[date].transactions.push(transaction)
+    const amount = transaction.type === 'Expense' ? -transaction.amount : transaction.amount
+    grouped[date].amount += amount
   }
-  return grouped;
-};
+  return grouped
+}
 
 export default async function TransactionList() {
-  const transactions = db.transactions ?? [];
-  const grouped = groupAndSumTransactionsByDate(transactions);
+  // 1. ADDED AWAIT: Now 'supabase' is the actual database client!
+  const supabase = await createClient()
+  
+  const {data: transactions, error} = await supabase
+    .from('transactions')
+    .select('*')
+    .order('created_at', {ascending: true})
+    
+  // 2. ADDED ERROR LOG: Now you won't be flying blind if the database rejects the query.
+  if (error) {
+    console.error("Supabase Error:", error.message);
+  }
 
+  // 3. ADDED FALLBACK: This prevents the 'transactions is not iterable' crash.
+  const grouped = groupAndSumTransactionsByDate(transactions || [])
+  
   return (
     <div className="space-y-8">
-      {Object.entries(grouped).map(([date, { transactions, amount }]) => (
-        <div key={date}>
-          <TransactionSummaryItem date={date} amount={amount} />
-          <Separator/>
-          <section className="space-y-4">
-            {transactions.map((transaction) => (
-              <div key={transaction.id}>
+      {Object.entries(grouped)
+        .map(([date, { transactions, amount }]) =>
+          <div key={date}>
+            <TransactionSummaryItem date={date} amount={amount} />
+            <Separator />
+            <section className="space-y-4">
+              {transactions.map(transaction => <div key={transaction.id}>
                 <TransactionItem {...transaction} />
-              </div>
-            ))}
-          </section>
-        </div>
-      ))}
+              </div>)}
+            </section>
+          </div>
+        )}
     </div>
-  );
+  )
 }
