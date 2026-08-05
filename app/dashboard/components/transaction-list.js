@@ -24,7 +24,7 @@ export default async function TransactionList() {
   const {data: transactions, error} = await supabase
     .from('transactions')
     .select('*')
-    .order('created_at', {ascending: true})
+    .order('created_at', {ascending: false})
     
   // 2. ADDED ERROR LOG: Now you won't be flying blind if the database rejects the query.
   if (error) {
