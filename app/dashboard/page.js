@@ -10,9 +10,9 @@ import { createClient } from "@/lib/supabase/server";
 
 export default async function dashboard() {
   const client = createClient();
-  console.log(
-    (await client).from('transactions').select()
-  )
+  // console.log(
+  //   (await client).from('transactions').select()
+  // )
 
   return (
     <>

@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { transactionSchema } from "@/lib/validation";
 import { useState } from "react";
+import { createTransaction, purgeTransactionListCache } from "@/lib/actions";
+import { useRouter } from "next/navigation";
 
 export default function TransactionForm() {
   const {
@@ -19,21 +21,13 @@ export default function TransactionForm() {
     mode: "onTouched",
     resolver: zodResolver(transactionSchema),
   });
-
+  const router = useRouter();
   const [isSaving, setSaving] = useState(false);
   const onSubmit = async (data) => {
     setSaving(true);
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/transactions`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          created_at: `${data.created_at}T00:00:00`,
-        }),
-      });
+      await createTransaction(data);
+      router.push("/dashboard");
     } finally {
       setSaving(false);
     }
